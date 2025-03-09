@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://mauryashivam050:Hu0w6QHy99J7lAk4@devmedia.yjar2.mongodb.net/?retryWrites=true&w=majority&appName=DevMedia",
-    "jwtSecret": "mysecrettoken"
+    "mongoURI": "",
+    "jwtSecret": ""
 } 
