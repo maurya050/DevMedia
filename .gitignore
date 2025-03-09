@@ -1,3 +1,4 @@
 node_modules/
 file.txt
-default.json
+# Ignore configuration files
+config/default.json
