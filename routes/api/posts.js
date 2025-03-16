@@ -105,6 +105,48 @@ router.delete('/:id', auth, async (req, res) => {
 // @route   PUT api/posts/like/:id
 // @desc    Like a post
 // @access  Private
+
+router.put('/like/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        // Check if the post has already been liked by the user
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+            return res.status(400).json({msg : 'Post already liked'});
+        }
+        post.likes.unshift({ user : req.user.id }); // Add the user to the likes array of the post object in the Beggining (we can also use push to add the user to the end of the array)
+        await post.save();
+        res.json(post.likes);
+    }
+    catch(err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}
+);
+
+// @route   PUT api/posts/unlike/:id
+// @desc    Unlike a post
+// @access  Private
+
+router.put('/unlike/:id', auth, async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        // Check if the post has already been liked by the user
+        if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+            return res.status(400).json({msg : 'Post has not yet been liked'});
+        }
+        // Get remove index  
+        const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id); // Get the index of the like to remove
+        post.likes.splice(removeIndex, 1); // Remove the like from the likes array
+        await post.save();
+        res.json(post.likes);
+    }
+    catch(err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}
+);
   
 
 module.exports = router;
