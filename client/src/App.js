@@ -1,12 +1,12 @@
-import logo from './logo.svg';
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-     hello
-    </div>
-  );
-}
-
+import React , {Fragment} from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+const App = () => (
+  <Fragment>
+      <Navbar />
+      <Landing />
+  </Fragment>
+);
 export default App;
