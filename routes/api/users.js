@@ -70,7 +70,7 @@ async (req, res) => {
             }
         );
 
-    //  res.send('User Registered');
+    res.status(200).json({msg : 'User registered successfully'}); // Send a success message back to the client
     } catch (err) {
         console.error(err.message);
         res.status(500).send('Server error');
