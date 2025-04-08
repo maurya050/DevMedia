@@ -70,6 +70,9 @@ const Login = () => {
         <p className="my-1">
             Don't have an account? <Link to="/register">Sign Up</Link>
         </p>
+        <p className="my-1">
+            Forgot your password? <Link to="/forgot-password">Reset Password</Link>
+        </p>
     </Fragment>
   );
 };
